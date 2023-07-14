@@ -1,43 +1,70 @@
-#include<cstdio>
 #include<bits/stdc++.h>
-
 using namespace std;
 
-long long a,b,c,d,e,f;
-long long aa[100005];
+const int N = 10002;
+int ans[N], mod = 10000007;
 
-long long fn( long long n)
-{
-    if(n==0) return a;
-    else if ( n==1) return b ;
-    else if ( n==2) return  c;
-    else if ( n==3 ) return  d;
-    else if ( n==4) return  e;
-    else if ( n==5 ) return  f;
-    else if ( aa[n]!= -1) return aa[n] ;
+int fn(int n) {
+    if (ans[n] != -1) return ans[n] % mod;
+    return ans[n] = (fn(n-1) + fn(n-2) + fn(n-3) + fn(n-4) + fn(n-5) + fn(n-6)) % mod;
+}
 
-    else
-    {
-        aa[n]=(   fn(n-1)+fn(n-2)+fn(n-3)+fn(n-4)+fn(n-5)+fn(n-6))%10000007;
-        return aa[n];
+void init(){
+    for (auto &it: ans){
+        it = -1;
     }
+}
 
+int main() {
+    int n, cases;#include<bits/stdc++.h>
+using namespace std;
+
+const int N = 10002;
+int ans[N], mod = 10000007;
+
+int fn(int n) {
+    if (ans[n] != -1) return ans[n] % mod;
+    return ans[n] = (fn(n-1) + fn(n-2) + fn(n-3) + fn(n-4) + fn(n-5) + fn(n-6)) % mod;
+}
+
+void init(){
+    for (auto &it: ans){
+        it = -1;
+    }
+}
+
+int main() {
+    int n, cases;
+    scanf("%d", &cases);
+
+    for (int caseno = 1; caseno <= cases; ++caseno) {
+
+        init();
+        for (int i = 0; i <= 5; i++){
+            scanf("%d ", &ans[i]);
+        }
+        scanf("%d", &n);
+
+        printf("Case %d: %d\n", caseno, fn(n) % mod);
+//        for (int i = 1; i <= n; i++) cout << ans[i] << " " ;
+//        cout << endl;
+    }
 
 }
 
+    scanf("%d", &cases);
 
-int main ()
-{
-    long long n,i,t;
-    scanf("%lld",&t);
+    for (int caseno = 1; caseno <= cases; ++caseno) {
 
-    for(i=0;i<t;i++)
-    {
-        memset(aa,-1,sizeof(aa));
+        init();
+        for (int i = 0; i <= 5; i++){
+            scanf("%d ", &ans[i]);
+        }
+        scanf("%d", &n);
 
-        scanf(" %lld %lld %lld %lld %lld %lld %lld ",&a,&b,&c,&d,&e,&f,&n);
-
-        printf("Case %lld: %lld\n",i+1,fn(n)%10000007);
+        printf("Case %d: %d\n", caseno, fn(n) % mod);
+//        for (int i = 1; i <= n; i++) cout << ans[i] << " " ;
+//        cout << endl;
     }
-    return 0;
+
 }

@@ -1,64 +1,26 @@
-#include<stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
 
-int onecount( int n)
+int main()
 {
-     int j;
-    int count=0;
-    for(j=1;j<=n;j*=2)
-    {
-        if(n&(j)!=0) count++;
-    }
+    int t, cs = 0;
+    scanf("%d ", &t);
+    while (t--){
+        long long n, ans, i;
+        scanf("%lld", &n);
 
-    return count;
-
-}
-
-int getrslt(int num)
-{
-    int rslt,j;
-     for(j=1;j<=num;j*=2)
-    {
-        if(num&(j)!=0)
-        {
-            rslt=num+j;
-            break;
+        for (i = 1; i <= n; i *= 2){
+            if (n & i){
+                ans = n + i;
+                break;
+            }
         }
+
+        int mid = __builtin_popcountll(n) - __builtin_popcountll(ans);
+        for (i = 0; i < mid; i++){
+            ans += (1 << i);
+        }
+
+         printf("Case %d: %lld\n", ++cs, ans);
     }
-
-    int diff=onecount(num)-onecount(rslt);
-
-    for(j=0;j<diff;j++)
-    {
-        rslt+=(1<<j);
-    }
-
-    return rslt;
-
 }
-
-int main ()
-{
-    int N,t;
-    scanf("%d",&t);
-
-    for(int i=0;i<t;i++)
-    {
-        scanf("%d",&N);
-
-        printf("Case %d: %d\n",i+1,getrslt(N));
-
-    }
-
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-

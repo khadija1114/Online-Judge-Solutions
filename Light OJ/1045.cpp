@@ -1,28 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
+
+const int N = 1e6+2;
+double lg[N];
+
 int main()
 {
-    int i,n,m,j,t;
-    double count;
-    double wow[1000005];
+    long long ans;
+    int t, cs = 0, n, m;
 
-
-
-	//cin >> t;
-
-	for(int i = 1; i <= 1000002; i++) {
-		wow[i] = wow[i-1] + log(i);
-	}
-    cin>>t;
-    for(j=1;j<=t;i++)
-    {
-        cin>>n;
-        count=0;
-        for(i=1;i<=n;i++)
-        {
-            count=count+log(i);
-            cout<<count<<" "<<wow[i]<<endl;
-        }
+    for (int i = 1; i < N-1; i++){
+        lg[i] = lg[i-1] + log(i);
     }
 
+    scanf("%d", &t);
+
+    while (t--){
+        scanf("%d %d", &n, &m);
+        ans = lg[n]/log(m) + 1;
+        printf("Case %d: %lld\n", ++cs, ans);
+    }
 }
